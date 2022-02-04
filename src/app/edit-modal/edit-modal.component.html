@@ -1,0 +1,72 @@
+<div class="flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center"
+    id="edit-modal">
+    <div class="relative my-6 w-1/2">
+        <!--content-->
+        <div
+            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <!--header-->
+            <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                <h3 class="text-3xl font-semibold">
+                    Edit Task
+                </h3>
+                <button
+                    class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    onclick="toggleModal('edit-modal')">
+                    <span
+                        class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                    </span>
+                </button>
+            </div>
+            <!--body-->
+            <div class="relative p-6 flex-auto">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="">
+                        <label class="block">
+                            <span class="block text-sm font-medium text-gray-700">Task Name</span>
+                            <input type="text" id="edit-task-name" [(ngModel)]="taskName"
+                                class="w-full p-2 border border-gray-300" placeholder="Enter task name" require>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="block">
+                            <span class="block text-sm font-medium text-gray-700">Assigned</span>
+                            <input type="text" id="edit-assigned" [(ngModel)]="assigned"
+                                class="w-full p-2 border border-gray-300" placeholder="Enter your name">
+                        </label>
+                    </div>
+                    <div>
+                        <label class="block">
+                            <span class="block text-sm font-medium text-gray-700">Assigned to</span>
+                            <input type="text" id="edit-assigned-to" [(ngModel)]="assignedTo"
+                                class="w-full p-2 border border-gray-300" placeholder="Enter assignee name">
+                        </label>
+                    </div>
+                    <div>
+                        <label class="block">
+                            <span class="block text-sm font-medium text-gray-700">Status</span>
+                            <select id="edit-status" [(ngModel)]="status" class="w-full p-2">
+                                <option value="">Select status</option>
+                                <option value="scheduled">Scheduled</option>
+                                <option value="pending">Pending</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!--footer-->
+            <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                <button
+                    class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button" (click)="cancelEditModal()">
+                    Cancel
+                </button>
+                <button
+                    class="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button" (click)="editTask()">
+                    Apply
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

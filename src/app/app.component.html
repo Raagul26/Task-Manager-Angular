@@ -29,3 +29,9 @@
 <div *ngIf=addTaskDisplay>
   <app-add-modal (data)="getAddTaskData($event)" (displayStatus)="cancelAddModal($event)"></app-add-modal>
 </div>
+
+<div *ngIf=editTaskDisplay>
+  <app-edit-modal (editData)="getEditTaskData($event)" (displayStatus)="cancelEditModal($event)"></app-edit-modal>
+</div>
+
+<div class="flex opacity-25 fixed inset-0 z-40 bg-black" *ngIf="addTaskDisplay || editTaskDisplay" ></div>
