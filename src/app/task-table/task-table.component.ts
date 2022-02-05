@@ -16,7 +16,7 @@ export class TaskTableComponent implements OnInit {
   taskList:object[] = this.taskListService.getTaskList()
 
   Object=Object
-  
+
   ngOnInit(): void {
   }
 
@@ -24,4 +24,9 @@ export class TaskTableComponent implements OnInit {
     this.displayStatus.emit(true)
   }
 
+  removeTask(event:any)
+  {
+    const elemId=event.target.id
+    this.taskListService.deleteTask(elemId)
+  }
 }

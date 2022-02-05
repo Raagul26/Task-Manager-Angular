@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class TaskListService {
 
-  taskList:object[] = []
+  taskList:any[] = []
   no:number = 1
 
   constructor() { }
@@ -17,6 +17,12 @@ export class TaskListService {
     this.no+=1
   }
 
+  deleteTask(id:any)
+  {
+    let row = this.taskList.find(e=>e.id==id.replace(/[^0-9]+/,''))
+    this.taskList.splice(row,1)
+  }
+  
   getTaskList()
   {
     return this.taskList
