@@ -23,7 +23,7 @@ export class AddModalComponent implements OnInit {
 
   addTask() {
 
-    if (this.taskName !== "" && this.assigned !== "" && this.assignedTo !== "" && this.status !== "") {
+    if (this.taskName !== "" && this.assigned !== "" && this.assignedTo !== "" && this.status !== "" && this.assigned !== this.assignedTo) {
 
       var rowData = {
         task: this.taskName,

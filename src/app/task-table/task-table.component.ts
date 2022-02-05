@@ -16,6 +16,7 @@ export class TaskTableComponent implements OnInit {
   taskList:object[] = this.taskListService.getTaskList()
 
   Object=Object
+  
   ngOnInit(): void {
   }
 

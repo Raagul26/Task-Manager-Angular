@@ -19,7 +19,7 @@
               </tr>
             </thead>
             <tbody id="table-body" class="text-gray-600 text-sm font-light">
-              <tr class="border-b border-gray-200 hover:bg-gray-100" *ngFor="let task of taskList" attr.id="{{task}}">
+              <tr class="border-b border-gray-200 hover:bg-gray-100" *ngFor="let task of taskList" attr.id="{{Object.values(task)[4]}}">
                 <td class="py-3 px-6 text-left whitespace-nowrap font-semibold">{{Object.values(task)[0]}}</td>
                 <td class="py-3 px-6 text-left font-semibold">{{Object.values(task)[1]}}</td>
                 <td class="py-3 px-6 text-center font-semibold">{{Object.values(task)[2]}}</td>
