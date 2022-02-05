@@ -1,4 +1,4 @@
-<app-task-table (displayStatus)="openAddModal($event)"></app-task-table>
+<app-task-table (addTaskDisplayStatus)="openAddModal($event)" (editTaskDisplayStatus)="openEditModal($event)"></app-task-table>
 
 <div *ngIf=addTaskDisplay>
   <app-add-modal (displayStatus)="closeAddModal($event)"></app-add-modal>

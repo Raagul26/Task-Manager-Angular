@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { TaskListService } from '../task-list.service';
 
 @Component({
   selector: 'app-edit-modal',
@@ -8,21 +9,20 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class EditModalComponent implements OnInit {
 
-  @Output() editData: EventEmitter<any> = new EventEmitter<any>();
   @Output() displayStatus: EventEmitter<any> = new EventEmitter<any>();
 
-  taskName: string = ""
-  assigned: string = ""
-  assignedTo: string = ""
-  status: string = ""
+  taskName: string = this.taskListService.getEdittingData().task
+  assigned: string = this.taskListService.getEdittingData().assigned
+  assignedTo: string = this.taskListService.getEdittingData().assignedTo
+  status: string = this.taskListService.getEdittingData().status
 
-  constructor() { }
+  constructor(private taskListService: TaskListService) { }
 
   ngOnInit(): void {
   }
 
   editTask() {
-    if (this.taskName !== "" && this.assigned !== "" && this.assignedTo !== "" && this.status !== "") {
+    if (this.taskName !== "" && this.assigned !== "" && this.assignedTo !== "" && this.status !== "" && this.assigned !== this.assignedTo) {
 
       var edittedRowData = {
         task: this.taskName,
@@ -30,7 +30,8 @@ export class EditModalComponent implements OnInit {
         assignedTo: this.assignedTo,
         status: this.status
       }
-      this.editData.emit(edittedRowData)
+      this.taskListService.editTask(edittedRowData)
+      this.cancelEditModal()
     }
   }
 

@@ -9,7 +9,8 @@ import { TaskListService } from '../task-list.service';
 })
 export class TaskTableComponent implements OnInit {
   
-  @Output() displayStatus: EventEmitter<any> = new EventEmitter<any>();
+  @Output() addTaskDisplayStatus: EventEmitter<any> = new EventEmitter<any>();
+  @Output() editTaskDisplayStatus: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private taskListService:TaskListService) { }
 
@@ -21,7 +22,19 @@ export class TaskTableComponent implements OnInit {
   }
 
   openAddModal() {
-    this.displayStatus.emit(true)
+    this.addTaskDisplayStatus.emit(true)
+  }
+
+  openEditModal()
+  {
+    this.editTaskDisplayStatus.emit(true)
+  }
+
+  editTask(event:any)
+  {
+    this.openEditModal()
+    const editElemId=event.target.id
+    this.taskListService.setId(editElemId)
   }
 
   removeTask(event:any)

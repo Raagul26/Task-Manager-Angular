@@ -11,14 +11,18 @@ export class AppComponent {
   addTaskDisplay = false
   editTaskDisplay = false
 
-  constructor(private taskListService: TaskListService){}
+  constructor(private taskListService: TaskListService) { }
 
-  openAddModal(displayStatus:boolean) {
+  openAddModal(displayStatus: boolean) {
     this.addTaskDisplay = displayStatus
   }
 
-  closeAddModal(displayStatus: any) {
+  closeAddModal(displayStatus: boolean) {
     this.addTaskDisplay = displayStatus
+  }
+
+  openEditModal(displayStatus: boolean) {
+    this.editTaskDisplay = displayStatus
   }
 
   cancelEditModal(displayStatus: boolean) {
