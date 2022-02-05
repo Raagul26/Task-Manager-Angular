@@ -1,37 +1,11 @@
-<div class="overflow-x-auto">
-  <div class="flex justify-center text-2xl font-sans mt-20 pt-10">Task Manager</div>
-  <button
-    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-2 border border-blue-500 hover:border-transparent rounded"
-    id="add-task-btn" (click)="openAddModal()">
-    Add Task
-  </button>
-  <div class="min-w-screen min-h-screen flex justify-center bg-gray-100 font-sans overflow-hidden">
-    <div class="w-full">
-      <div class="bg-white shadow-md rounded my-6">
-        <table class="min-w-max w-full table-auto">
-          <thead>
-            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-              <th class="py-3 px-6 text-left">Task</th>
-              <th class="py-3 px-6 text-left">Assigned</th>
-              <th class="py-3 px-6 text-center">Assigned To</th>
-              <th class="py-3 px-6 text-center">Status</th>
-              <th class="py-3 px-6 text-center">Actions</th>
-            </tr>
-          </thead>
-          <tbody id="table-body" class="text-gray-600 text-sm font-light">
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+<app-task-table (displayStatus)="openAddModal($event)"></app-task-table>
 
 <div *ngIf=addTaskDisplay>
-  <app-add-modal (data)="getAddTaskData($event)" (displayStatus)="cancelAddModal($event)"></app-add-modal>
+  <app-add-modal (displayStatus)="closeAddModal($event)"></app-add-modal>
 </div>
 
 <div *ngIf=editTaskDisplay>
-  <app-edit-modal (editData)="getEditTaskData($event)" (displayStatus)="cancelEditModal($event)"></app-edit-modal>
+  <app-edit-modal (displayStatus)="cancelEditModal($event)"></app-edit-modal>
 </div>
 
-<div class="flex opacity-25 fixed inset-0 z-40 bg-black" *ngIf="addTaskDisplay || editTaskDisplay" ></div>
+<div class="flex opacity-25 fixed inset-0 z-40 bg-black" *ngIf="addTaskDisplay || editTaskDisplay"></div>

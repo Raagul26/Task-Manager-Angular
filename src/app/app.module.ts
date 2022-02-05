@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { AddModalComponent } from './add-modal/add-modal.component';
 import { FormsModule } from '@angular/forms';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
+import { TaskTableComponent } from './task-table/task-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddModalComponent,
-    EditModalComponent
+    EditModalComponent,
+    TaskTableComponent
   ],
   imports: [
     BrowserModule,
