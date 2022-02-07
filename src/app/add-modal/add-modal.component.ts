@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { TaskListService } from '../task-list.service';
 
 @Component({
@@ -7,36 +7,33 @@ import { TaskListService } from '../task-list.service';
   styles: [
   ]
 })
-export class AddModalComponent implements OnInit {
+export class AddModalComponent {
 
-  taskName: string = ""
-  assigned: string = ""
-  assignedTo: string = ""
+  taskName: string | undefined
+  assigned: string | undefined
+  assignedTo: string | undefined
   status: string = ""
 
-  @Output() displayStatus: EventEmitter<any> = new EventEmitter<any>();
+  @Output() displayStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private taskListService: TaskListService) { }
 
-  ngOnInit(): void {
-  }
+  addTask():void {
 
-  addTask() {
-
-    if (this.taskName !== "" && this.assigned !== "" && this.assignedTo !== "" && this.status !== "" && this.assigned !== this.assignedTo) {
+    if (this.taskName && this.assigned && this.assignedTo && this.status && this.assigned !== this.assignedTo) {
 
       var rowData = {
         task: this.taskName,
         assigned: this.assigned,
         assignedTo: this.assignedTo,
-        status: this.status
+        status: this.status,
       }
       this.taskListService.addTask(rowData)
       this.displayStatus.emit(false)
     }
   }
 
-  cancelModal() {
+  cancelModal():void {
     this.displayStatus.emit(false)
   }
 

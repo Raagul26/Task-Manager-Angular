@@ -13,19 +13,19 @@ export class AppComponent {
 
   constructor(private taskListService: TaskListService) { }
 
-  openAddModal(displayStatus: boolean) {
+  openAddModal(displayStatus: boolean):void {
     this.addTaskDisplay = displayStatus
   }
 
-  closeAddModal(displayStatus: boolean) {
+  closeAddModal(displayStatus: boolean):void {
     this.addTaskDisplay = displayStatus
   }
 
-  openEditModal(displayStatus: boolean) {
+  openEditModal(displayStatus: boolean):void {
     this.editTaskDisplay = displayStatus
   }
 
-  cancelEditModal(displayStatus: boolean) {
+  cancelEditModal(displayStatus: boolean):void {
     this.editTaskDisplay = displayStatus
   }
 }

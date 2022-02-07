@@ -8,16 +8,17 @@ export class TaskListService {
   taskList:any[] = []
   no:number = 1
   id:number | undefined
+  
   constructor() { }
 
-  addTask(row:any)
+  addTask(row:any):void
   {
     row.id=this.no
     this.taskList.push(row)
     this.no+=1
   }
 
-  editTask(editRow:any)
+  editTask(editRow:any):void
   {
     let row = this.taskList.find(e=>e.id==this.id)
     row.task=editRow.task
@@ -26,9 +27,9 @@ export class TaskListService {
     row.status=editRow.status
   }
 
-  deleteTask(id:any)
+  deleteTask(id:string):void
   {
-    let row = this.taskList.find(e=>e.id==id.replace(/[^0-9]+/,''))
+    let row = this.taskList.find(e=>e.id==Number(id.replace(/[^0-9]+/,'')))
     this.taskList.splice(row,1)
   }
   
@@ -37,13 +38,13 @@ export class TaskListService {
     return this.taskList.find(e=>e.id==this.id) 
   }
 
-  getTaskList()
+  getTaskList():Task[]
   {
     return this.taskList
   }
 
-  setId(id:any)
+  setId(id:string):void
   {
-    this.id=id.replace(/[^0-9]+/,'')
+    this.id=Number(id.replace(/[^0-9]+/,''))
   }
 }

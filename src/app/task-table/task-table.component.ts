@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { TaskListService } from '../task-list.service';
 
 @Component({
@@ -7,37 +7,34 @@ import { TaskListService } from '../task-list.service';
   styles: [
   ]
 })
-export class TaskTableComponent implements OnInit {
+export class TaskTableComponent {
   
-  @Output() addTaskDisplayStatus: EventEmitter<any> = new EventEmitter<any>();
-  @Output() editTaskDisplayStatus: EventEmitter<any> = new EventEmitter<any>();
+  @Output() addTaskDisplayStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() editTaskDisplayStatus: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private taskListService:TaskListService) { }
 
-  taskList:object[] = this.taskListService.getTaskList()
+  taskList:Task[] = this.taskListService.getTaskList()
 
   Object=Object
 
-  ngOnInit(): void {
-  }
-
-  openAddModal() {
+  openAddModal():void {
     this.addTaskDisplayStatus.emit(true)
   }
 
-  openEditModal()
+  openEditModal():void
   {
     this.editTaskDisplayStatus.emit(true)
   }
 
-  editTask(event:any)
+  editTask(event:any):void
   {
     this.openEditModal()
     const editElemId=event.target.id
     this.taskListService.setId(editElemId)
   }
 
-  removeTask(event:any)
+  removeTask(event:any):void
   {
     const elemId=event.target.id
     this.taskListService.deleteTask(elemId)

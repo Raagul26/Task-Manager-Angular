@@ -21,10 +21,10 @@
           <tbody id="table-body" class="text-gray-600 text-sm font-light">
             <tr class="border-b border-gray-200 hover:bg-gray-100" *ngFor="let task of taskList"
               attr.id="{{Object.values(task)[4]}}">
-              <td class="py-3 px-6 text-center whitespace-nowrap font-semibold">{{Object.values(task)[0]}}</td>
-              <td class="py-3 px-6 text-center font-semibold">{{Object.values(task)[1]}}</td>
-              <td class="py-3 px-6 text-center font-semibold">{{Object.values(task)[2]}}</td>
-              <td class="py-3 px-6 text-center font-semibold">
+              <td class="py-3 px-6 text-center whitespace-nowrap font-semibold hover:cursor-default">{{Object.values(task)[0]}}</td>
+              <td class="py-3 px-6 text-center font-semibold hover:cursor-default">{{Object.values(task)[1]}}</td>
+              <td class="py-3 px-6 text-center font-semibold hover:cursor-default">{{Object.values(task)[2]}}</td>
+              <td class="py-3 px-6 text-center font-semibold hover:cursor-default">
                 <ng-template [ngIf]="Object.values(task)[3] == 'completed'">
                   <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Completed</span>
                 </ng-template>
