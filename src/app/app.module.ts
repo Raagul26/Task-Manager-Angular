@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
-import { AddModalComponent } from './add-modal/add-modal.component';
-import { FormsModule } from '@angular/forms';
-import { EditModalComponent } from './edit-modal/edit-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TaskTableComponent } from './task-table/task-table.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddModalComponent,
-    EditModalComponent,
-    TaskTableComponent
+    TaskTableComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

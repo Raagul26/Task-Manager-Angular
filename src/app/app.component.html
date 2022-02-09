@@ -1,11 +1,6 @@
-<app-task-table (addTaskDisplayStatus)="openAddModal($event)" (editTaskDisplayStatus)="openEditModal($event)"></app-task-table>
+<app-task-table (modalDisplayStatus)="openModal($event)"></app-task-table>
 
-<div *ngIf=addTaskDisplay>
-  <app-add-modal (displayStatus)="closeAddModal($event)"></app-add-modal>
+<div *ngIf=displayModal>
+  <app-modal (displayStatus)="cancelModal($event)"></app-modal>
+  <div class="flex opacity-25 fixed inset-0 z-40 bg-black"></div>
 </div>
-
-<div *ngIf=editTaskDisplay>
-  <app-edit-modal (displayStatus)="cancelEditModal($event)"></app-edit-modal>
-</div>
-
-<div class="flex opacity-25 fixed inset-0 z-40 bg-black" *ngIf="addTaskDisplay || editTaskDisplay"></div>

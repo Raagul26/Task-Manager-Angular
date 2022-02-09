@@ -8,24 +8,25 @@ import { TaskListService } from './task-list.service';
 })
 export class AppComponent {
   title = 'Task-Manager-Angular';
-  addTaskDisplay = false
-  editTaskDisplay = false
+
+  displayModal: boolean = false
 
   constructor(private taskListService: TaskListService) { }
 
-  openAddModal(displayStatus: boolean):void {
-    this.addTaskDisplay = displayStatus
+  openModal(displayStatus: any): void {
+    if(displayStatus.modal == 'edit')
+    {
+      this.taskListService.setTitleAndName('Edit Task','Edit')
+    }
+    else
+    {
+      this.taskListService.setTitleAndName('Add Task','ADD')
+    }
+    this.displayModal = displayStatus.display
   }
 
-  closeAddModal(displayStatus: boolean):void {
-    this.addTaskDisplay = displayStatus
+  cancelModal(displayStatus: boolean): void {
+    this.displayModal = displayStatus
   }
-
-  openEditModal(displayStatus: boolean):void {
-    this.editTaskDisplay = displayStatus
-  }
-
-  cancelEditModal(displayStatus: boolean):void {
-    this.editTaskDisplay = displayStatus
-  }
+  
 }
