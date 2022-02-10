@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { TaskListService } from '../task-list.service';
+import { Task, TaskListService } from '../task-list.service';
+
+interface DisplayStatus{
+  modal:string
+  display:boolean
+}
 
 @Component({
   selector: 'app-task-table',
@@ -8,27 +13,25 @@ import { TaskListService } from '../task-list.service';
 })
 export class TaskTableComponent {
 
-  @Output() modalDisplayStatus: EventEmitter<{modal:string,display:boolean}> = new EventEmitter<{modal:string,display:boolean}>();
+  @Output() modalDisplayStatus: EventEmitter<DisplayStatus> = new EventEmitter<DisplayStatus>();
 
   constructor(private taskListService: TaskListService) { }
 
   taskList: Task[] = this.taskListService.getTaskList()
 
-  Object = Object
+  object = Object
 
   openModal():void {
     this.modalDisplayStatus.emit({modal:'add',display:true})
   }
 
-  editTask(event: any): void {
+  editTask(event: MouseEvent): void {
     this.modalDisplayStatus.emit({modal:'edit',display:true})
-    const editElemId = event.target.id
-    this.taskListService.setId(editElemId)
+    this.taskListService.setId(Object(event.target).id)
   }
 
-  removeTask(event: any): void {
-    const elemId = event.target.id
-    this.taskListService.deleteTask(elemId)
+  removeTask(event: MouseEvent): void {
+    this.taskListService.deleteTask(Object(event.target).id)
   }
-  
+
 }

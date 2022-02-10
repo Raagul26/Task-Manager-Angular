@@ -1,62 +1,60 @@
 import { Injectable } from '@angular/core';
 
+export interface Task {
+  task: string
+  assigned: string
+  assignedTo: string
+  status: string
+  id: String
+}
+
 @Injectable({
   providedIn: 'root'
 })
-export class TaskListService {    
+export class TaskListService {
 
-  taskList:any[] = []
-  no:number = 1
-  id:number | undefined
+  taskList: Task[] = []
+  id: string | undefined
 
-  title!:string 
-  buttonName!:string
+  title!: string
+  buttonName!: string
 
   constructor() { }
 
-  addTask(row:any):void
-  {
-    row.id=this.no
+  addTask(row: Task): void {
     this.taskList.push(row)
-    this.no+=1
   }
 
-  editTask(editRow:any):void
-  {
-    let row = this.taskList.find(e=>e.id==this.id)
-    row.task=editRow.task
-    row.assigned=editRow.assigned
-    row.assignedTo=editRow.assignedTo
-    row.status=editRow.status
-    console.log(this.taskList);
-    
+  editTask(editRow: Task): void {
+    let row: Task | undefined = this.taskList.find(e => e.id == this.id)
+    if (row) {
+      row.task = editRow.task
+      row.assigned = editRow.assigned
+      row.assignedTo = editRow.assignedTo
+      row.status = editRow.status
+    }
   }
 
-  deleteTask(id: string):void
-  {
-    let row = this.taskList.find(e=>e.id==Number(id.replace(/[^0-9]+/,'')))
+  deleteTask(id: string): void {
+    let row: number = this.taskList.findIndex(elem => elem.id == id.replace('-del', ''))
     this.taskList.splice(row,1)
   }
-  
-  getEdittingData()
-  {
-    return this.taskList.find(e=>e.id==this.id) 
+
+  getEdittingData():Task | undefined {
+    return this.taskList.find(elem => elem.id == this.id)
   }
 
-  getTaskList():Task[]
-  {
+  getTaskList(): Task[] {
     return this.taskList
   }
 
-  setId(id:string):void
-  {
-    this.id=Number(id.replace(/[^0-9]+/,''))
-  }
-
-  setTitleAndName(title:string, buttonName:string)
-  {
-   this.title=title
-   this.buttonName=buttonName
+  setId(id: string): void {
+    this.id = id.replace('-edit', '')
   }
   
+  setTitleAndName(title: string, buttonName: string): void {
+    this.title = title
+    this.buttonName = buttonName
+  }
+
 }

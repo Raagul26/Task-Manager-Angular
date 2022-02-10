@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { TaskListService } from './task-list.service';
 
+interface DisplayStatus{
+  modal: string
+  display: boolean 
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,14 +18,12 @@ export class AppComponent {
 
   constructor(private taskListService: TaskListService) { }
 
-  openModal(displayStatus: any): void {
-    if(displayStatus.modal == 'edit')
-    {
-      this.taskListService.setTitleAndName('Edit Task','Edit')
+  openModal(displayStatus:DisplayStatus ): void {
+    if (displayStatus.modal == 'edit') {
+      this.taskListService.setTitleAndName('Edit Task', 'Edit')
     }
-    else
-    {
-      this.taskListService.setTitleAndName('Add Task','ADD')
+    else {
+      this.taskListService.setTitleAndName('Add Task', 'ADD')
     }
     this.displayModal = displayStatus.display
   }
@@ -28,5 +31,5 @@ export class AppComponent {
   cancelModal(displayStatus: boolean): void {
     this.displayModal = displayStatus
   }
-  
+
 }
